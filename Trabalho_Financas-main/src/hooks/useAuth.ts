@@ -42,16 +42,17 @@ export const useAuth = () => {
     setCarregando(true);
     try {
       await signInWithPopup(auth, provedorGoogle);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Erro ao fazer login:', error);
+      const err = error as { code?: string };
 
-      if (error.code === 'auth/popup-blocked') {
+      if (err.code === 'auth/popup-blocked') {
         Swal.fire({
           icon: 'error',
           title: 'Popup bloqueado',
           text: 'Permita popups no navegador e tente novamente.'
         });
-      } else if (error.code === 'auth/cancelled-popup-request') {
+      } else if (err.code === 'auth/cancelled-popup-request') {
         Swal.fire({
           icon: 'warning',
           title: 'Login cancelado',
