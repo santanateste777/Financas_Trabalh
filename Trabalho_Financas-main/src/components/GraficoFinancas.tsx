@@ -81,7 +81,7 @@ const GraficoFinancas = ({ transacoes }: Props) => {
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={dadosMensais}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="mes" />
+            <XAxis dataKey="mes" interval={0} tick={{ fontSize: 12 }} />
             <YAxis />
             <Tooltip formatter={value => formatarMoeda(Number(value))} />
             <Bar dataKey="receitas" name="Receitas" stackId="a" fill="#16a34a" />
