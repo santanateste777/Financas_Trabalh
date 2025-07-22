@@ -6,7 +6,9 @@ import { X } from 'lucide-react';
 interface ModalProps {
   aberto: boolean;
   transacaoEditando?: Transacao | null;
-  onSalvar: (dados: any) => Promise<boolean>;
+  onSalvar: (
+    dados: Omit<Transacao, 'id' | 'usuarioId' | 'createdAt' | 'updatedAt'>
+  ) => Promise<boolean>;
   onEditar: (id: string, dados: Partial<Transacao>) => Promise<boolean>;
   onCancelar: () => void;
 }

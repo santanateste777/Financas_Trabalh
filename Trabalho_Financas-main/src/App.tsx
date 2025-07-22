@@ -24,7 +24,12 @@ function App() {
   const [modalAberto, setModalAberto] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const handleSalvarTransacao = async (dadosTransacao: any) => {
+  const handleSalvarTransacao = async (
+    dadosTransacao: Omit<
+      Transacao,
+      'id' | 'usuarioId' | 'createdAt' | 'updatedAt'
+    >
+  ) => {
     try {
       if (transacaoEditando) {
         await editarTransacao(transacaoEditando.id, dadosTransacao);
