@@ -5,6 +5,7 @@ import { useTransacoes } from './hooks/useTransacoes';
 import Login from './components/Login';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
+import GraficoFinancas from './components/GraficoFinancas';
 import FormularioTransacao from './components/FormularioTransacao';
 import ListaTransacoes, { Transacao } from './components/ListaTransacoes';
 
@@ -91,6 +92,7 @@ function App() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Dashboard resumo={resumo} carregando={carregandoTransacoes} />
+        <GraficoFinancas transacoes={transacoes} />
 
         {/* Botão flutuante para nova transação */}
         <div className="mb-6 text-left">
