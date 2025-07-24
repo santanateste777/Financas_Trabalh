@@ -5,6 +5,7 @@ import { useTransacoes } from './hooks/useTransacoes';
 import Login from './components/Login';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
+import GraficoFinancas from './components/GraficoFinancas';
 import FormularioTransacao from './components/FormularioTransacao';
 import ListaTransacoes, { Transacao } from './components/ListaTransacoes';
 
@@ -23,7 +24,12 @@ function App() {
   const [modalAberto, setModalAberto] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const handleSalvarTransacao = async (dadosTransacao: any) => {
+  const handleSalvarTransacao = async (
+    dadosTransacao: Omit<
+      Transacao,
+      'id' | 'usuarioId' | 'createdAt' | 'updatedAt'
+    >
+  ) => {
     try {
       if (transacaoEditando) {
         await editarTransacao(transacaoEditando.id, dadosTransacao);
@@ -92,18 +98,22 @@ function App() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Dashboard resumo={resumo} carregando={carregandoTransacoes} />
 
-        {/* Botão flutuante para nova transação */}
-        <div className="mb-6 text-left">
-          <button
-            onClick={handleNovaTransacao}
-            className="bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-2 rounded-lg shadow transition-all"
-          >
-            Nova Transação
-          </button>
-        </div>
+        <div className="flex flex-col lg:flex-row gap-8 items-start">
+          <div className="lg:w-2/3 w-full">
+            <GraficoFinancas transacoes={transacoes} />
+          </div>
 
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-          <div>
+          <div className="flex-1 w-full">
+            {/* Botão para nova transação */}
+            <div className="mb-6 text-left">
+              <button
+                onClick={handleNovaTransacao}
+                className="bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-2 rounded-lg shadow transition-all"
+              >
+                Nova Transação
+              </button>
+            </div>
+
             <ListaTransacoes
               transacoes={transacoes}
               carregando={carregandoTransacoes}

@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "workspaces": ["Trabalho_Financas-main"],
+  "scripts": {
+    "dev": "npm run dev --workspace Trabalho_Financas-main",
+    "build": "npm run build --workspace Trabalho_Financas-main",
+    "lint": "npm run lint --workspace Trabalho_Financas-main"
+  }
+}

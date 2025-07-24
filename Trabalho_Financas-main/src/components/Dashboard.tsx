@@ -20,7 +20,7 @@ const Dashboard = ({ resumo, carregando }: Props) => {
 
   if (carregando) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
         {[1, 2, 3].map((i) => (
           <div key={i} className="card animate-pulse">
             <div className="h-4 bg-gray-200 rounded w-1/3 mb-2"></div>
@@ -37,8 +37,8 @@ const Dashboard = ({ resumo, carregando }: Props) => {
   };
 
   return (
-    <motion.div 
-      className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"
+    <motion.div
+      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8"
       initial="hidden"
       animate="visible"
       variants={{
